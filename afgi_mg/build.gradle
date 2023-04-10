@@ -86,7 +86,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.commonvideo'
                 artifactId = 'afgi'
-                version = 'camcall-0.0.1'
+                version = 'camcall-0.0.2'
             }
         }
     }
