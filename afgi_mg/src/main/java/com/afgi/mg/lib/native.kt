@@ -532,7 +532,7 @@ fun Activity.requestNativeApplovin(
             layout.layoutParams =
                 LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
-                    100
+                    LinearLayout.LayoutParams.MATCH_PARENT
                 )
             layout.orientation = LinearLayout.VERTICAL
             if (loadedNativeAd != null) {
