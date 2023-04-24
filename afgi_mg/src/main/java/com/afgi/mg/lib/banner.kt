@@ -57,6 +57,42 @@ fun Activity.requestBanner(
 
 }
 
+fun Activity.requestLargeBanner(
+    placement: String,
+    listener: (layout: LinearLayout?, status: String) -> Unit
+) {
+    val adView = AdView(this)
+    adView.setAdSize(AdSize.MEDIUM_RECTANGLE)
+    adView.adUnitId = placement
+    adView.loadAd(
+        AdRequest.Builder()
+            .build()
+    )
+    adView.adListener = object : AdListener() {
+        override fun onAdLoaded() {
+            super.onAdLoaded()
+            val layout = LinearLayout(this@requestLargeBanner)
+            layout.layoutParams =
+                LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+            layout.orientation = LinearLayout.VERTICAL
+            val width = LinearLayout.LayoutParams.MATCH_PARENT
+            val heightPx = LinearLayout.LayoutParams.WRAP_CONTENT
+            adView.layoutParams = LinearLayout.LayoutParams(width, heightPx)
+            layout.addView(adView)
+            listener.invoke(layout, LOADED_AD)
+        }
+
+        override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+            super.onAdFailedToLoad(loadAdError)
+            listener.invoke(null, loadAdError.toString())
+        }
+    }
+
+}
+
 fun Activity.requestBannerInMobi(
     placement: String,
     listener: (layout: LinearLayout?, status: String) -> Unit
