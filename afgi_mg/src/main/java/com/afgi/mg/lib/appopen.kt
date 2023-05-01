@@ -2,6 +2,7 @@ package com.afgi.mg.lib
 
 import android.app.Activity
 import android.content.Context
+import android.util.Log
 import com.applovin.mediation.MaxAd
 import com.applovin.mediation.MaxAdListener
 import com.applovin.mediation.MaxError
@@ -46,26 +47,34 @@ fun Context.requestAppOpen(placement: String, callBack: (str: String) -> Unit) {
 }
 
 fun Context.requestApplovinAppOpen(placement: String, callBack: (status: String) -> Unit) {
+    Log.e("*-*-*-*-", "ads in: ", )
     applovineAppOpenAd = MaxAppOpenAd(placement, this)
+
+    Log.e("*-*-*-*-", "applovineAppOpenAd: $applovineAppOpenAd", )
+
     applovineAppOpenAd?.setListener(object : MaxAdListener {
         override fun onAdLoaded(ad: MaxAd?) {
+            Log.e("*-*-*-*-", "onAdLoaded: ", )
             loadTime = Date().time
             callBack.invoke(LOADED_AD)
         }
 
         override fun onAdDisplayed(ad: MaxAd?) {
-
+            Log.e("*-*-*-*-", "onAdDisplayed: ", )
         }
 
         override fun onAdHidden(ad: MaxAd?) {
+            Log.e("*-*-*-*-", "onAdHidden: ", )
             applovineAppOpenAd = null
         }
 
         override fun onAdClicked(ad: MaxAd?) {
-
+            Log.e("*-*-*-*-", "onAdClicked: ", )
         }
 
         override fun onAdLoadFailed(adUnitId: String?, error: MaxError?) {
+            Log.e("*-*-*-*-", "onAdLoadFailed: "+error?.code )
+            Log.e("*-*-*-*-", "onAdLoadFailed 111111111: "+error?.message )
             applovineAppOpenAd = null
             callBack.invoke("error code =${error?.code} message=${error?.message} mediatedNetworkErrorCode=${error?.mediatedNetworkErrorCode}  mediatedNetworkErrorMessage=${error?.mediatedNetworkErrorMessage}")
 
