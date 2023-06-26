@@ -17,9 +17,14 @@
         <!--            android:name="applovin.sdk.key"-->
         <!--            android:value="9Bb_GkBHB0pKDFGJ7lM37l89UJmXtqc5cUB1m_didTh2THE1uKk1wTnUrVqAD9cg3rMUa2mq__i3tVMDRTzuBZ" /> -->
 
-        <meta-data
+       <!-- <meta-data
             android:name="applovin.sdk.key"
             android:value="iXdZOxR6yTa8SlXwSgs24-PWhMwL0x7kTlHtgkzcCXmeHHZkzPn1OAT4XSPXOXFsGXiyFgTSDI5UaeDX3-ZR86" />
+  -->
+
+        <meta-data
+            android:name="applovin.sdk.key"
+            android:value="X31zJW8ROfKyir7K9V5m1n5oUwP8DDKJcyNJBOhUGpbA0H_lGigrAKLmgcQKLWvlocuGV0n3Xpqc4OUzqETR0s" />
 
         <activity
             android:name="com.ironsource.sdk.controller.ControllerActivity"
