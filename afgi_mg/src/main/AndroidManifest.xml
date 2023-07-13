@@ -21,7 +21,6 @@
             android:name="applovin.sdk.key"
             android:value="iXdZOxR6yTa8SlXwSgs24-PWhMwL0x7kTlHtgkzcCXmeHHZkzPn1OAT4XSPXOXFsGXiyFgTSDI5UaeDX3-ZR86" />
   -->
-
         <meta-data
             android:name="applovin.sdk.key"
             android:value="X31zJW8ROfKyir7K9V5m1n5oUwP8DDKJcyNJBOhUGpbA0H_lGigrAKLmgcQKLWvlocuGV0n3Xpqc4OUzqETR0s" />

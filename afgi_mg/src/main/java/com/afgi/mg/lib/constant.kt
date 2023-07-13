@@ -38,8 +38,6 @@ fun Context.initialize() {
     AudienceNetworkAds.initialize(this)
     AppLovinSdk.getInstance(this).mediationProvider = "max"
     AppLovinSdk.getInstance(this).initializeSdk {}
-
-
 }
 fun Context.initInMobi(str:String){
     val params = JSONObject()

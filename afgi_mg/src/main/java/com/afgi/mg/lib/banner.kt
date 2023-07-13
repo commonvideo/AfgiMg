@@ -54,7 +54,6 @@ fun Activity.requestBanner(
             listener.invoke(null, loadAdError.toString())
         }
     }
-
 }
 
 fun Activity.requestLargeBanner(

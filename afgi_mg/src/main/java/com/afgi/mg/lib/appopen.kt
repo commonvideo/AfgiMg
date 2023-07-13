@@ -23,7 +23,6 @@ private fun wasLoadTimeLessThanNHoursAgo(): Boolean {
     val numMilliSecondsPerHour: Long = 3600000
     return dateDifference < numMilliSecondsPerHour * 4
 }
-
 fun Context.requestAppOpen(placement: String, callBack: (str: String) -> Unit) {
     AppOpenAd.load(
         this,
