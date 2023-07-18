@@ -89,11 +89,6 @@ fun Activity.requestNative(
 }
 
 
-
-
-
-
-
 // for native exit dialog
 fun Activity.requestNativeExit(
     vararg color: Int,
