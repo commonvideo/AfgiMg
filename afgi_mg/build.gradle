@@ -86,7 +86,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.commonvideo'
                 artifactId = 'afgi'
-                version = 'datingcafe_new_dialog'
+                version = 'datingcafe3_187'
             }
         }
     }
