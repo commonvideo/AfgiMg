@@ -259,7 +259,6 @@ fun Activity.requestNativeRecall(
                     super.onAdFailedToLoad(loadAdError)
                     listener.invoke(null, loadAdError.toString())
                 }
-
                 override fun onAdLoaded() {
                     super.onAdLoaded()
                     listener.invoke(layout, LOADED_AD)
@@ -272,12 +271,14 @@ fun Activity.requestNativeRecall(
     }
 }
 private fun populateUnifiedNativeAdViewLargeRecall(nativeAd: NativeAd, adView: NativeAdView) {
+
     val vc = nativeAd.mediaContent
     vc!!.videoController.videoLifecycleCallbacks = object : VideoLifecycleCallbacks() {
         override fun onVideoEnd() {
             super.onVideoEnd()
         }
     }
+
     val mediaView = adView.findViewById<MediaView>(R.id.ad_media)
     adView.mediaView = mediaView
     adView.headlineView = adView.findViewById(R.id.ad_headline)
@@ -331,6 +332,8 @@ private fun populateUnifiedNativeAdViewLargeRecall(nativeAd: NativeAd, adView: N
     }
     adView.setNativeAd(nativeAd)
 }
+
+
 
 private fun populateUnifiedNativeAdViewLargeHomeI(nativeAd: NativeAd, adView: NativeAdView) {
     val vc = nativeAd.mediaContent
