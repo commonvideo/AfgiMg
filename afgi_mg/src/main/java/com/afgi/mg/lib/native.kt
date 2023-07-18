@@ -89,6 +89,8 @@ fun Activity.requestNative(
 }
 
 
+
+
 // for native exit dialog
 fun Activity.requestNativeExit(
     vararg color: Int,
@@ -103,7 +105,6 @@ fun Activity.requestNativeExit(
             placement
         )
             .forNativeAd { nativeAd ->
-
                 layout = LinearLayout(this)
                 layout?.layoutParams =
                     LinearLayout.LayoutParams(
