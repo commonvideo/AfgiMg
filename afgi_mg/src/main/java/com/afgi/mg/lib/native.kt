@@ -88,6 +88,66 @@ fun Activity.requestNative(
     }
 }
 
+fun Activity.requestNativeExit(
+    vararg color: Int,
+    placement: String,
+    listener: (layout: LinearLayout?, status: String) -> Unit
+) {
+    if (color.size == 4) {
+        var layout: LinearLayout? = null
+
+        AdLoader.Builder(
+            this,
+            placement
+        )
+            .forNativeAd { nativeAd ->
+                layout = LinearLayout(this)
+                layout?.layoutParams =
+                    LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
+                layout?.orientation = LinearLayout.VERTICAL
+
+                val adView = layoutInflater
+                    .inflate(R.layout.ad_native_exit, null) as NativeAdView
+
+                val btn = adView.findViewById<AppCompatButton>(R.id.ad_call_to_action)
+                val adHeadline = adView.findViewById<AppCompatTextView>(R.id.ad_headline)
+                val adBody = adView.findViewById<AppCompatTextView>(R.id.ad_body)
+
+//                btn.setBackgroundResource(color[0])
+                btn.backgroundTintList = resources.getColorStateList(color[0])
+                btn.setTextColor(ContextCompat.getColor(this, color[1]))
+
+                adHeadline.setTextColor(ContextCompat.getColor(this, color[2]))
+
+                adBody.setTextColor(ContextCompat.getColor(this, color[3]))
+
+                populateUnifiedNativeAdViewLarge(nativeAd, adView)
+                layout?.addView(adView)
+                adView.bringToFront()
+                layout?.invalidate()
+            }
+            .withAdListener(object : AdListener() {
+                override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+                    super.onAdFailedToLoad(loadAdError)
+                    listener.invoke(null, loadAdError.toString())
+                }
+
+                override fun onAdLoaded() {
+                    super.onAdLoaded()
+                    listener.invoke(layout, LOADED_AD)
+                }
+            })
+            .build()
+            .loadAd(AdRequest.Builder().build())
+    } else {
+        listener.invoke(null, "Color array must be size 4")
+    }
+}
+
+
 fun Activity.requestNativeHomeI(
     vararg color: Int,
     placement: String,

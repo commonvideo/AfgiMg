@@ -191,6 +191,7 @@ fun Activity.requestAppLovinBanner(
             val heightPx = resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._45sdp)
             adView.layoutParams = LinearLayout.LayoutParams(width, heightPx)
             layout.addView(adView)
+
             callBack.invoke(layout, LOADED_AD)
         }
 
@@ -228,6 +229,8 @@ fun Activity.requestAppLovinBanner(
 
         }
     })
+    adView?.setExtraParameter("allow_pause_auto_refresh_immediately", "true")
+    adView?.stopAutoRefresh()
     adView.loadAd()
 }
 
