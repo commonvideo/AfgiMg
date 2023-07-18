@@ -56,6 +56,7 @@ fun Activity.requestBanner(
     }
 }
 
+
 fun Activity.requestLargeBanner(
     placement: String,
     listener: (layout: LinearLayout?, status: String) -> Unit

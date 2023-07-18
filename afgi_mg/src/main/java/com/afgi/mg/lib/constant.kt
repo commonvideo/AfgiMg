@@ -32,7 +32,6 @@ var idInMobiIntertitial = "1670563968475"
 
 val params = JSONObject()
 
-
 fun Context.initialize() {
     MobileAds.initialize(this)
     AudienceNetworkAds.initialize(this)
@@ -73,7 +72,6 @@ fun Activity.onResumeIronSource() {
     IronSource.onResume(this)
 
 }
-
 
 fun Activity.initIronSource(appId: String) {
     IntegrationHelper.validateIntegration(this)

@@ -88,9 +88,6 @@ fun Activity.requestNative(
     }
 }
 
-
-
-
 // for native exit dialog
 fun Activity.requestNativeExit(
     vararg color: Int,
@@ -150,7 +147,6 @@ fun Activity.requestNativeExit(
         listener.invoke(null, "Color array must be size 4")
     }
 }
-
 
 fun Activity.requestNativeHomeI(
     vararg color: Int,
