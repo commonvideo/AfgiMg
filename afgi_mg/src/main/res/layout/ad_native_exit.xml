@@ -37,14 +37,14 @@
 
                     <TextView
                         android:id="@+id/sponseredd"
-                        android:layout_width="@dimen/_20sdp"
+                        android:layout_width="wrap_content"
                         android:layout_height="@dimen/_15sdp"
                         android:layout_below="@+id/layoutHeader"
                         android:background="@drawable/ad_bg"
                         android:gravity="center_vertical"
                         android:paddingStart="@dimen/_5sdp"
                         android:paddingEnd="@dimen/_5sdp"
-                        android:text="AD"
+                        android:text=" AD "
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/_7ssp"
                         android:visibility="visible" />
