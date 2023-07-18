@@ -113,7 +113,7 @@ fun Activity.requestNativeExit(
                 layout?.orientation = LinearLayout.VERTICAL
 
                 val adView = layoutInflater
-                    .inflate(R.layout.ad_unified_large, null) as NativeAdView
+                    .inflate(R.layout.ad_native_exit, null) as NativeAdView
 
                 val btn = adView.findViewById<AppCompatButton>(R.id.ad_call_to_action)
                 val adHeadline = adView.findViewById<AppCompatTextView>(R.id.ad_headline)
