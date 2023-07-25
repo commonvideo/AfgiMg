@@ -56,7 +56,6 @@ dependencies {
     implementation 'com.unity3d.ads:unity-ads:4.4.1'
     implementation 'com.google.ads.mediation:unity:4.6.1.0'
 
-
     //todo IronSource mediation
     implementation 'com.ironsource.sdk:mediationsdk:7.2.7'
     implementation 'com.ironsource.adapters:admobadapter:4.3.32'
@@ -86,7 +85,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.commonvideo'
                 artifactId = 'afgi'
-                version = 'supercall_5'
+                version = 'supercall_6'
             }
         }
     }
