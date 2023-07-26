@@ -52,33 +52,7 @@ fun Context.request(placement: String, isExitAds: Boolean, listener: (str: Strin
         })
 }
 
-fun Context.requestInMobi(placement: String, isExitAds: Boolean, listener: (str: String) -> Unit) {
-    val intertitialeventlistner: InterstitialAdEventListener =
-        object : InterstitialAdEventListener() {
-            override fun onAdLoadSucceeded(p0: InMobiInterstitial, p1: AdMetaInfo) {
-                super.onAdLoadSucceeded(p0, p1)
-                mCanShowAd = true
 
-            }
-
-            override fun onAdLoadFailed(p0: InMobiInterstitial, p1: InMobiAdRequestStatus) {
-                super.onAdLoadFailed(p0, p1)
-            }
-
-            override fun onAdDisplayed(p0: InMobiInterstitial, p1: AdMetaInfo) {
-                super.onAdDisplayed(p0, p1)
-            }
-
-            override fun onAdDismissed(p0: InMobiInterstitial) {
-                super.onAdDismissed(p0)
-            }
-        }
-
-
-    intertitialad = InMobiInterstitial(this, placement.toLong(), intertitialeventlistner)
-
-    intertitialad?.load()
-}
 
 fun Context.requestFacebook(placement: String, listener: (str: String) -> Unit) {
     interstitialAdFacebook = com.facebook.ads.InterstitialAd(this, placement)
@@ -387,31 +361,8 @@ fun Activity.show(placementKey: String, listener: () -> Unit) {
                 listener.invoke()
             }
         }
-    } else if (intertitialad != null) {
-        if (mCanShowAd) intertitialad?.show()
-        intertitialad?.setListener(object : InterstitialAdEventListener() {
-            override fun onAdLoadSucceeded(p0: InMobiInterstitial, p1: AdMetaInfo) {
-                super.onAdLoadSucceeded(p0, p1)
-
-            }
-
-            override fun onAdLoadFailed(p0: InMobiInterstitial, p1: InMobiAdRequestStatus) {
-                super.onAdLoadFailed(p0, p1)
-                intertitialad = null
-                listener.invoke()
-            }
-
-            override fun onAdDisplayed(p0: InMobiInterstitial, p1: AdMetaInfo) {
-                super.onAdDisplayed(p0, p1)
-            }
-
-            override fun onAdDismissed(p0: InMobiInterstitial) {
-                super.onAdDismissed(p0)
-                intertitialad = null
-                listener.invoke()
-            }
-        })
-    } else {
+    }
+    else {
         listener.invoke()
     }
 }
