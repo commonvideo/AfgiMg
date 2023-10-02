@@ -10,10 +10,19 @@
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
             android:value="true" />
 
-        <!--pink line call-->
+       <!-- &lt;!&ndash;pink line call&ndash;&gt;
         <meta-data
           android:name="applovin.sdk.key"
          android:value="4MxAZspMliOKcxcX6fgFTrwKsfKnQtzC1lEm_ttviX7ZaJUEC540EiqLXv84cTuzttw5HMTkxkE9Lu2mtLTJMD" />
+-->
+
+
+<!--        super call-->
+
+          <meta-data
+          android:name="applovin.sdk.key"
+         android:value="9Bb_GkBHB0pKDFGJ7lM37l89UJmXtqc5cUB1m_didTh2THE1uKk1wTnUrVqAD9cg3rMUa2mq__i3tVMDRTzuBZ" />
+
 
 
         <activity
