@@ -22,7 +22,7 @@
 
         <meta-data
             android:name="applovin.sdk.key"
-            android:value="9Bb_GkBHB0pKDFGJ7lM37l89UJmXtqc5cUB1m_didTh2THE1uKk1wTnUrVqAD9cg3rMUa2mq__i3tVMDRTzuB" />
+            android:value="9Bb_GkBHB0pKDFGJ7lM37l89UJmXtqc5cUB1m_didTh2THE1uKk1wTnUrVqAD9cg3rMUa2mq__i3tVMDRTzuBZ" />
 
         <activity
             android:name="com.ironsource.sdk.controller.ControllerActivity"
