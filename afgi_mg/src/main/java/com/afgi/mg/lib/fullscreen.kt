@@ -301,7 +301,7 @@ fun isExitLoaded(): Boolean {
 }
 
 fun isLoaded(): Boolean {
-    return mInterstitialAd[0] != null || intertitialad != null || IronSource.isInterstitialReady() || (applovineInterstitialAd[1] != null && applovineInterstitialAd[1]?.isReady == true)
+    return mInterstitialAd[0] != null || /*intertitialad != null ||*/ IronSource.isInterstitialReady() || (applovineInterstitialAd[1] != null && applovineInterstitialAd[1]?.isReady == true)
 }
 
 fun isSplashLoaded(): Boolean {
