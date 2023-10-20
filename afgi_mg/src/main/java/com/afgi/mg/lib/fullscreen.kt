@@ -12,10 +12,10 @@ import com.facebook.ads.InterstitialAdListener
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-import com.inmobi.ads.AdMetaInfo
-import com.inmobi.ads.InMobiAdRequestStatus
-import com.inmobi.ads.InMobiInterstitial
-import com.inmobi.ads.listeners.InterstitialAdEventListener
+//import com.inmobi.ads.AdMetaInfo
+//import com.inmobi.ads.InMobiAdRequestStatus
+//import com.inmobi.ads.InMobiInterstitial
+//import com.inmobi.ads.listeners.InterstitialAdEventListener
 import com.ironsource.mediationsdk.IronSource
 import com.ironsource.mediationsdk.logger.IronSourceError
 import com.ironsource.mediationsdk.sdk.InterstitialListener
@@ -26,7 +26,7 @@ private var applovineInterstitialAd = arrayOfNulls<MaxInterstitialAd?>(3)
 
 var mCanShowAd = false
 
-var intertitialad: InMobiInterstitial? = null
+//var intertitialad: InMobiInterstitial? = null
 
 fun Context.request(placement: String, isExitAds: Boolean, listener: (str: String) -> Unit) {
     InterstitialAd.load(
@@ -52,6 +52,7 @@ fun Context.request(placement: String, isExitAds: Boolean, listener: (str: Strin
         })
 }
 
+/*
 fun Context.requestInMobi(placement: String, isExitAds: Boolean, listener: (str: String) -> Unit) {
     val intertitialeventlistner: InterstitialAdEventListener =
         object : InterstitialAdEventListener() {
@@ -79,6 +80,7 @@ fun Context.requestInMobi(placement: String, isExitAds: Boolean, listener: (str:
 
     intertitialad?.load()
 }
+*/
 
 fun Context.requestFacebook(placement: String, listener: (str: String) -> Unit) {
     interstitialAdFacebook = com.facebook.ads.InterstitialAd(this, placement)
@@ -387,7 +389,7 @@ fun Activity.show(placementKey: String, listener: () -> Unit) {
                 listener.invoke()
             }
         }
-    } else if (intertitialad != null) {
+    } /*else if (intertitialad != null) {
         if (mCanShowAd) intertitialad?.show()
         intertitialad?.setListener(object : InterstitialAdEventListener() {
             override fun onAdLoadSucceeded(p0: InMobiInterstitial, p1: AdMetaInfo) {
@@ -411,7 +413,7 @@ fun Activity.show(placementKey: String, listener: () -> Unit) {
                 listener.invoke()
             }
         })
-    } else {
+    }*/ else {
         listener.invoke()
     }
 }

@@ -1,7 +1,7 @@
 package com.afgi.sample
 
 import android.app.Application
-import com.afgi.mg.lib.initInMobi
+//import com.afgi.mg.lib.initInMobi
 import com.afgi.mg.lib.initialize
 import com.afgi.mg.lib.testDeviceIds
 import com.afgi.mg.lib.testDeviceIdsFacebook

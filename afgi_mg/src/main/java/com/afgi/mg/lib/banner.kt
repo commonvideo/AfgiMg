@@ -15,10 +15,10 @@ import com.facebook.ads.AdError
 import com.facebook.ads.AdSize.BANNER_HEIGHT_50
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.nativead.NativeAdView
-import com.inmobi.ads.AdMetaInfo
-import com.inmobi.ads.InMobiAdRequestStatus
-import com.inmobi.ads.InMobiBanner
-import com.inmobi.ads.listeners.BannerAdEventListener
+//import com.inmobi.ads.AdMetaInfo
+//import com.inmobi.ads.InMobiAdRequestStatus
+//import com.inmobi.ads.InMobiBanner
+//import com.inmobi.ads.listeners.BannerAdEventListener
 
 
 fun Activity.requestBanner(
@@ -93,7 +93,7 @@ fun Activity.requestLargeBanner(
 
 }
 
-fun Activity.requestBannerInMobi(
+/*fun Activity.requestBannerInMobi(
     placement: String,
     listener: (layout: LinearLayout?, status: String) -> Unit
 ) {
@@ -119,7 +119,7 @@ fun Activity.requestBannerInMobi(
         }
     })
 
-}
+}*/
 
 fun Activity.getAdSize(): AdSize {
     // Determine the screen width (less decorations) to use for the ad width.

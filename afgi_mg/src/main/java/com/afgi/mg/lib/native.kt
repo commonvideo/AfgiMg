@@ -21,10 +21,10 @@ import com.google.android.gms.ads.VideoController.VideoLifecycleCallbacks
 import com.google.android.gms.ads.nativead.MediaView
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
-import com.inmobi.ads.AdMetaInfo
-import com.inmobi.ads.InMobiAdRequestStatus
-import com.inmobi.ads.InMobiNative
-import com.inmobi.ads.listeners.NativeAdEventListener
+//import com.inmobi.ads.AdMetaInfo
+//import com.inmobi.ads.InMobiAdRequestStatus
+//import com.inmobi.ads.InMobiNative
+//import com.inmobi.ads.listeners.NativeAdEventListener
 
 
 //0= button color 1=button color 2=title color 3=body title color
@@ -624,43 +624,43 @@ fun Activity.requestNativeApplovin(
     nativeAdLoader.loadAd()
 }
 
-fun Activity.requestNativeInMobi(
-    id: String,
-    callBack: (layout: LinearLayout?, status: String) -> Unit
-) {
-
-    var nativeAd: InMobiNative? = null
-
-    val inmobinativeadlistener = object : NativeAdEventListener() {
-        override fun onAdLoadSucceeded(p0: InMobiNative, p1: AdMetaInfo) {
-            super.onAdLoadSucceeded(p0, p1)
-
-            val layout = LinearLayout(this@requestNativeInMobi)
-
-            layout.addView(
-                nativeAd?.getPrimaryViewOfWidth(
-                    this@requestNativeInMobi,
-                    layout,
-                    layout,
-                    1080
-                )
-            )
-
-            callBack.invoke(layout, LOADED_AD)
-        }
-
-        override fun onAdLoadFailed(p0: InMobiNative, p1: InMobiAdRequestStatus) {
-            super.onAdLoadFailed(p0, p1)
-
-            Log.e("TAG", "onAdLoadFailed p0: ${p0.adTitle}")
-            Log.e("TAG", "onAdLoadFailed p1: ${p1.statusCode}")
-
-        }
-    }
-
-
-    nativeAd = InMobiNative(this, id.toLong(), inmobinativeadlistener)
-
-    nativeAd.load()
-}
+//fun Activity.requestNativeInMobi(
+//    id: String,
+//    callBack: (layout: LinearLayout?, status: String) -> Unit
+//) {
+//
+//    var nativeAd: InMobiNative? = null
+//
+//    val inmobinativeadlistener = object : NativeAdEventListener() {
+//        override fun onAdLoadSucceeded(p0: InMobiNative, p1: AdMetaInfo) {
+//            super.onAdLoadSucceeded(p0, p1)
+//
+//            val layout = LinearLayout(this@requestNativeInMobi)
+//
+//            layout.addView(
+//                nativeAd?.getPrimaryViewOfWidth(
+//                    this@requestNativeInMobi,
+//                    layout,
+//                    layout,
+//                    1080
+//                )
+//            )
+//
+//            callBack.invoke(layout, LOADED_AD)
+//        }
+//
+//        override fun onAdLoadFailed(p0: InMobiNative, p1: InMobiAdRequestStatus) {
+//            super.onAdLoadFailed(p0, p1)
+//
+//            Log.e("TAG", "onAdLoadFailed p0: ${p0.adTitle}")
+//            Log.e("TAG", "onAdLoadFailed p1: ${p1.statusCode}")
+//
+//        }
+//    }
+//
+//
+//    nativeAd = InMobiNative(this, id.toLong(), inmobinativeadlistener)
+//
+//    nativeAd.load()
+//}
 
