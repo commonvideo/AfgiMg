@@ -13,7 +13,7 @@ class App : Application() {
 
         initialize()
 
-        initInMobi("1670153853003")
+//        initInMobi("1670153853003")
 
         AppOpenManager(this)
         testDeviceIdsFacebook("02c9dacf-875d-4e66-98ad-7a73b4280d7d")
