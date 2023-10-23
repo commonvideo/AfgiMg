@@ -12,10 +12,10 @@ import com.facebook.ads.InterstitialAdListener
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-import com.inmobi.ads.AdMetaInfo
-import com.inmobi.ads.InMobiAdRequestStatus
-import com.inmobi.ads.InMobiInterstitial
-import com.inmobi.ads.listeners.InterstitialAdEventListener
+//import com.inmobi.ads.AdMetaInfo
+//import com.inmobi.ads.InMobiAdRequestStatus
+//import com.inmobi.ads.InMobiInterstitial
+//import com.inmobi.ads.listeners.InterstitialAdEventListener
 import com.ironsource.mediationsdk.IronSource
 import com.ironsource.mediationsdk.logger.IronSourceError
 import com.ironsource.mediationsdk.sdk.InterstitialListener
