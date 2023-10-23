@@ -136,7 +136,7 @@ fun Activity.requestFacebookBanner(
     val width = LinearLayout.LayoutParams.MATCH_PARENT
     val heightPx = LinearLayout.LayoutParams.WRAP_CONTENT
 
-    val adsizeNew: com.facebook.ads.AdSize? = BANNER_HEIGHT_50
+    var adsizeNew: com.facebook.ads.AdSize? = BANNER_HEIGHT_50
 
     if (size == 1) {
         adsizeNew = BANNER_HEIGHT_50
