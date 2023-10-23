@@ -12,7 +12,9 @@ import com.applovin.mediation.MaxError
 import com.applovin.mediation.ads.MaxAdView
 import com.facebook.ads.Ad
 import com.facebook.ads.AdError
+import com.facebook.ads.AdSize.BANNER_320_50
 import com.facebook.ads.AdSize.BANNER_HEIGHT_50
+import com.facebook.ads.AdSize.BANNER_HEIGHT_90
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.inmobi.ads.AdMetaInfo
@@ -22,25 +24,21 @@ import com.inmobi.ads.listeners.BannerAdEventListener
 
 
 fun Activity.requestBanner(
-    placement: String,
-    listener: (layout: LinearLayout?, status: String) -> Unit
+    placement: String, listener: (layout: LinearLayout?, status: String) -> Unit
 ) {
     val adView = AdView(this)
     adView.setAdSize(getAdSize())
     adView.adUnitId = placement
     adView.loadAd(
-        AdRequest.Builder()
-            .build()
+        AdRequest.Builder().build()
     )
     adView.adListener = object : AdListener() {
         override fun onAdLoaded() {
             super.onAdLoaded()
             val layout = LinearLayout(this@requestBanner)
-            layout.layoutParams =
-                LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                )
+            layout.layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
+            )
             layout.orientation = LinearLayout.VERTICAL
             val width = LinearLayout.LayoutParams.MATCH_PARENT
             val heightPx = LinearLayout.LayoutParams.WRAP_CONTENT
@@ -58,25 +56,21 @@ fun Activity.requestBanner(
 }
 
 fun Activity.requestLargeBanner(
-    placement: String,
-    listener: (layout: LinearLayout?, status: String) -> Unit
+    placement: String, listener: (layout: LinearLayout?, status: String) -> Unit
 ) {
     val adView = AdView(this)
     adView.setAdSize(AdSize.MEDIUM_RECTANGLE)
     adView.adUnitId = placement
     adView.loadAd(
-        AdRequest.Builder()
-            .build()
+        AdRequest.Builder().build()
     )
     adView.adListener = object : AdListener() {
         override fun onAdLoaded() {
             super.onAdLoaded()
             val layout = LinearLayout(this@requestLargeBanner)
-            layout.layoutParams =
-                LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                )
+            layout.layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
+            )
             layout.orientation = LinearLayout.VERTICAL
             val width = LinearLayout.LayoutParams.MATCH_PARENT
             val heightPx = LinearLayout.LayoutParams.WRAP_CONTENT
@@ -94,10 +88,8 @@ fun Activity.requestLargeBanner(
 }
 
 fun Activity.requestBannerInMobi(
-    placement: String,
-    listener: (layout: LinearLayout?, status: String) -> Unit
-) {
-    val bannerAd = InMobiBanner(this@requestBannerInMobi, placement.toLong())
+    placement: String, listener: (layout: LinearLayout?, status: String) -> Unit
+) {/*  val bannerAd = InMobiBanner(this@requestBannerInMobi, placement.toLong())
     bannerAd.load()
 
     bannerAd.setListener(object : BannerAdEventListener(){
@@ -117,7 +109,7 @@ fun Activity.requestBannerInMobi(
             super.onAdLoadFailed(p0, p1)
             listener.invoke(null, p1.message)
         }
-    })
+    })*/
 
 }
 
@@ -134,58 +126,67 @@ fun Activity.getAdSize(): AdSize {
 
 
 fun Activity.requestFacebookBanner(
-    placement: String,
-    listener: (layout: LinearLayout?, status: String) -> Unit
+    placement: String, size: Int , listener: (layout: LinearLayout?, status: String) -> Unit
 ) {
     val layout = LinearLayout(this@requestFacebookBanner)
-    layout.layoutParams =
-        LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
+    layout.layoutParams = LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
+    )
     layout.orientation = LinearLayout.VERTICAL
     val width = LinearLayout.LayoutParams.MATCH_PARENT
     val heightPx = LinearLayout.LayoutParams.WRAP_CONTENT
-    val adView =
-        com.facebook.ads.AdView(this, placement, BANNER_HEIGHT_50)
+
+    val adsizeNew: com.facebook.ads.AdSize? = BANNER_HEIGHT_50
+
+    if (size == 1) {
+        adsizeNew = BANNER_HEIGHT_50
+    } else if (size == 2) {
+        adsizeNew = BANNER_HEIGHT_90
+    } else if (size == 3){
+        adsizeNew = BANNER_320_50
+    }
+
+    val adView = com.facebook.ads.AdView(this, placement, adsizeNew)
     layout.addView(adView)
-    adView.loadAd(adView.buildLoadAdConfig().withAdListener(object : AdListener(),
-        com.facebook.ads.AdListener {
-        override fun onError(p0: Ad?, p1: AdError?) {
-            listener.invoke(null, "errorCode= ${p1?.errorCode} errorMessage=${p1?.errorMessage}")
-        }
+    adView.loadAd(
+        adView.buildLoadAdConfig()
+            .withAdListener(object : AdListener(), com.facebook.ads.AdListener {
+                override fun onError(p0: Ad?, p1: AdError?) {
+                    listener.invoke(
+                        null,
+                        "errorCode= ${p1?.errorCode} errorMessage=${p1?.errorMessage}"
+                    )
+                }
 
-        override fun onAdLoaded(p0: Ad?) {
-            adView.layoutParams = LinearLayout.LayoutParams(width, heightPx)
-            layout.removeView(adView)
-            layout.addView(adView)
-            listener.invoke(layout, LOADED_AD)
-        }
+                override fun onAdLoaded(p0: Ad?) {
+                    adView.layoutParams = LinearLayout.LayoutParams(width, heightPx)
+                    layout.removeView(adView)
+                    layout.addView(adView)
+                    listener.invoke(layout, LOADED_AD)
+                }
 
-        override fun onAdClicked(p0: Ad?) {
+                override fun onAdClicked(p0: Ad?) {
 
-        }
+                }
 
-        override fun onLoggingImpression(p0: Ad?) {
+                override fun onLoggingImpression(p0: Ad?) {
 
-        }
-    }).build())
+                }
+            }).build()
+    )
 }
 
 
 fun Activity.requestAppLovinBanner(
-    placement: String,
-    callBack: (layout: LinearLayout?, status: String) -> Unit
+    placement: String, callBack: (layout: LinearLayout?, status: String) -> Unit
 ) {
     val adView = MaxAdView(placement, this)
     adView.setListener(object : MaxAdViewAdListener {
         override fun onAdLoaded(ad: MaxAd?) {
             val layout = LinearLayout(this@requestAppLovinBanner)
-            layout.layoutParams =
-                LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                )
+            layout.layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
+            )
             layout.orientation = LinearLayout.VERTICAL
             val width = LinearLayout.LayoutParams.MATCH_PARENT
             val heightPx = resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._45sdp)

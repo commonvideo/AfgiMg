@@ -10,8 +10,9 @@ import com.facebook.ads.AdSettings
 import com.facebook.ads.AudienceNetworkAds
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
-import com.inmobi.sdk.InMobiSdk
-import com.inmobi.sdk.SdkInitializationListener
+import com.google.android.gms.ads.initialization.InitializationStatus
+//import com.inmobi.sdk.InMobiSdk
+//import com.inmobi.sdk.SdkInitializationListener
 import com.ironsource.mediationsdk.IronSource
 import com.ironsource.mediationsdk.integration.IntegrationHelper
 import kotlinx.coroutines.CoroutineScope
@@ -34,18 +35,18 @@ val params = JSONObject()
 
 
 fun Context.initialize() {
-    MobileAds.initialize(this)
+    MobileAds.initialize(this){ initializationStatus: InitializationStatus? ->  Log.e("aa","--------$initializationStatus") }
     AudienceNetworkAds.initialize(this)
     AppLovinSdk.getInstance(this).mediationProvider = "max"
     AppLovinSdk.getInstance(this).initializeSdk {}
-
-
 }
+
+
 fun Context.initInMobi(str:String){
     val params = JSONObject()
     params.put("gdpr", "0")
 
-    InMobiSdk.init(this, str, params, SdkInitializationListener() {
+ /*   InMobiSdk.init(this, str, params, SdkInitializationListener() {
         @Override
         fun onInitializationComplete(error: Error?) {
             if (null != error) {
@@ -55,7 +56,7 @@ fun Context.initInMobi(str:String){
             }
         }
     })
-    InMobiSdk.setLogLevel(InMobiSdk.LogLevel.DEBUG)
+    InMobiSdk.setLogLevel(InMobiSdk.LogLevel.DEBUG)*/
 }
 
 fun testDeviceIdsFacebook(ids: String) {
