@@ -47,7 +47,7 @@ fun Context.requestAppOpen(placement: String, callBack: (str: String) -> Unit) {
 }
 
 fun Context.requestApplovinAppOpen(placement: String, callBack: (status: String) -> Unit) {
-    Log.e("*-*-*-*-", "ads in: ", )
+    Log.e("*-*-*-*-", "ads in: ")
     applovineAppOpenAd = MaxAppOpenAd(placement, this)
 
     Log.e("*-*-*-*-", "applovineAppOpenAd: $applovineAppOpenAd", )

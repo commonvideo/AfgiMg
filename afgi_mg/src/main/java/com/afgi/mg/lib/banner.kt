@@ -12,13 +12,15 @@ import com.applovin.mediation.MaxError
 import com.applovin.mediation.ads.MaxAdView
 import com.facebook.ads.Ad
 import com.facebook.ads.AdError
+import com.facebook.ads.AdSize.BANNER_320_50
 import com.facebook.ads.AdSize.BANNER_HEIGHT_50
+import com.facebook.ads.AdSize.BANNER_HEIGHT_90
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.nativead.NativeAdView
-import com.inmobi.ads.AdMetaInfo
-import com.inmobi.ads.InMobiAdRequestStatus
-import com.inmobi.ads.InMobiBanner
-import com.inmobi.ads.listeners.BannerAdEventListener
+//import com.inmobi.ads.AdMetaInfo
+//import com.inmobi.ads.InMobiAdRequestStatus
+//import com.inmobi.ads.InMobiBanner
+//import com.inmobi.ads.listeners.BannerAdEventListener
 
 
 fun Activity.requestBanner(
@@ -97,7 +99,7 @@ fun Activity.requestBannerInMobi(
     placement: String,
     listener: (layout: LinearLayout?, status: String) -> Unit
 ) {
-    val bannerAd = InMobiBanner(this@requestBannerInMobi, placement.toLong())
+   /* val bannerAd = InMobiBanner(this@requestBannerInMobi, placement.toLong())
     bannerAd.load()
 
     bannerAd.setListener(object : BannerAdEventListener(){
@@ -117,8 +119,7 @@ fun Activity.requestBannerInMobi(
             super.onAdLoadFailed(p0, p1)
             listener.invoke(null, p1.message)
         }
-    })
-
+    })*/
 }
 
 fun Activity.getAdSize(): AdSize {
@@ -134,7 +135,7 @@ fun Activity.getAdSize(): AdSize {
 
 
 fun Activity.requestFacebookBanner(
-    placement: String,
+    placement: String,size : Int,
     listener: (layout: LinearLayout?, status: String) -> Unit
 ) {
     val layout = LinearLayout(this@requestFacebookBanner)
@@ -146,8 +147,18 @@ fun Activity.requestFacebookBanner(
     layout.orientation = LinearLayout.VERTICAL
     val width = LinearLayout.LayoutParams.MATCH_PARENT
     val heightPx = LinearLayout.LayoutParams.WRAP_CONTENT
-    val adView =
-        com.facebook.ads.AdView(this, placement, BANNER_HEIGHT_50)
+
+    var adSizeNew : com.facebook.ads.AdSize = BANNER_HEIGHT_50
+
+    if (size==1) {
+        adSizeNew = BANNER_HEIGHT_50
+    }else if (size==2) {
+        adSizeNew = BANNER_HEIGHT_90
+    }else if (size==3) {
+        adSizeNew = BANNER_320_50
+    }
+
+    val adView = com.facebook.ads.AdView(this, placement, adSizeNew)
     layout.addView(adView)
     adView.loadAd(adView.buildLoadAdConfig().withAdListener(object : AdListener(),
         com.facebook.ads.AdListener {

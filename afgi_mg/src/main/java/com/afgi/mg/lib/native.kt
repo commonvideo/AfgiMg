@@ -21,10 +21,10 @@ import com.google.android.gms.ads.VideoController.VideoLifecycleCallbacks
 import com.google.android.gms.ads.nativead.MediaView
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
-import com.inmobi.ads.AdMetaInfo
-import com.inmobi.ads.InMobiAdRequestStatus
-import com.inmobi.ads.InMobiNative
-import com.inmobi.ads.listeners.NativeAdEventListener
+//import com.inmobi.ads.AdMetaInfo
+//import com.inmobi.ads.InMobiAdRequestStatus
+//import com.inmobi.ads.InMobiNative
+//import com.inmobi.ads.listeners.NativeAdEventListener
 
 
 //0= button color 1=button color 2=title color 3=body title color
@@ -569,7 +569,7 @@ fun Activity.requestNativeInMobi(
     callBack: (layout: LinearLayout?, status: String) -> Unit
 ) {
 
-    var nativeAd: InMobiNative? = null
+   /* var nativeAd: InMobiNative? = null
 
     val inmobinativeadlistener = object : NativeAdEventListener() {
         override fun onAdLoadSucceeded(p0: InMobiNative, p1: AdMetaInfo) {
@@ -601,6 +601,6 @@ fun Activity.requestNativeInMobi(
 
     nativeAd = InMobiNative(this, id.toLong(), inmobinativeadlistener)
 
-    nativeAd.load()
+    nativeAd.load()*/
 }
 
