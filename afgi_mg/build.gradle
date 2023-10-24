@@ -86,7 +86,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.commonvideo'
                 artifactId = 'afgi'
-                version = 'qvideocall-0.0.1'
+                version = 'queencall_Ver2'
             }
         }
     }

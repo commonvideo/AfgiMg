@@ -1,6 +1,8 @@
 package com.afgi.mg.lib
 
 import android.app.Activity
+import android.content.Context
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +30,10 @@ import com.google.android.gms.ads.nativead.NativeAdView
 
 
 //0= button color 1=button color 2=title color 3=body title color
+
+
+var FBHome_layout: NativeAdLayout? = null
+
 fun Activity.requestNative(
     vararg color: Int,
     placement: String,
@@ -390,6 +396,7 @@ private fun populateUnifiedNativeAdViewLarge(nativeAd: NativeAd, adView: NativeA
 }
 
 
+/*
 fun Activity.requestNativeFacebook(
     vararg color: Int,
     placement: String,
@@ -433,6 +440,7 @@ fun Activity.requestNativeFacebook(
         }
     }).build())
 }
+*/
 
 fun Activity.inflateAd(
     nativeAd: com.facebook.ads.NativeAd,
@@ -515,6 +523,130 @@ fun Activity.inflateAd(
         e.printStackTrace()
         listener.invoke("facebook $e")
     }
+}
+
+
+
+
+fun Activity.requestNativeFacebook(
+    vararg color: Int,
+    id: String,
+    callBack: (layout: LinearLayout?, status: String) -> Unit
+){
+
+    var fbnative: com.facebook.ads.NativeAd = NativeAd(this, id.toString());
+    val nativeAdListener = object : NativeAdListener {
+        override fun onMediaDownloaded(ad: Ad) {
+            Log.e("TAG", "FB Native ad finished downloading all assets.")
+        }
+
+        override fun onError(p0: Ad?, p1: com.facebook.ads.AdError?) {
+            Log.e("TAG", "FB Native ad failed to load: ${p1?.errorMessage}")
+            Log.e("Tag", "FB Native home-------------facebook fail"+p1?.errorMessage);
+            callBack.invoke(
+                null,
+                "error code =${p1?.errorCode} message=${p1?.errorMessage} "
+            )
+        }
+
+
+        override fun onAdLoaded(ad: Ad) {
+            Log.d("TAG", "FB Native ad is loaded and ready to be displayed!")
+            Log.e("Tag", "FB Native home-------------facebook load success")
+
+            val newlayout : NativeAdLayout? = inflateFBAd(fbnative,color)
+
+            val natively = LinearLayout(this@requestNativeFacebook)
+            natively.layoutParams =
+                LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+                )
+            natively.orientation = LinearLayout.VERTICAL
+            natively.addView(newlayout)
+            natively.bringToFront()
+            natively.invalidate()
+
+            callBack.invoke(natively, LOADED_AD)
+        }
+
+        override fun onAdClicked(ad: Ad) {
+            Log.d("TAG", "Native ad clicked!")
+        }
+
+        override fun onLoggingImpression(ad: Ad) {
+            Log.d("TAG", "Native ad impression logged!")
+        }
+    }
+
+
+    fbnative.loadAd(
+        fbnative.buildLoadAdConfig()
+            .withAdListener(nativeAdListener)
+            .build()
+    )
+}
+
+private fun Activity.inflateFBAd(nativeAd: com.facebook.ads.NativeAd,color: IntArray) : NativeAdLayout? {
+    nativeAd.unregisterView()
+
+    FBHome_layout = NativeAdLayout(this)
+    FBHome_layout?.layoutParams = LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams.MATCH_PARENT,
+        LinearLayout.LayoutParams.WRAP_CONTENT
+    )
+//    FBhome_layout?.orientation = LinearLayout.VERTICAL
+
+
+
+    val inflater =
+        getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+
+    val adView = inflater.inflate(R.layout.fb_native, null) as NativeAdLayout
+
+    // Add the AdOptionsView
+//    val adChoicesContainer = findViewById<LinearLayout>(R.id.ad_choices_container)
+//    val adOptionsView = AdOptionsView(this, nativeAd, adHolder)
+//    adChoicesContainer.removeAllViews()
+//    adChoicesContainer.addView(adOptionsView, 0)
+
+    // Create native UI using the ad metadata.
+    val nativeAdIcon = adView.findViewById<com.facebook.ads.MediaView>(R.id.native_ad_icon)
+    val nativeAdTitle = adView.findViewById<TextView>(R.id.native_ad_title)
+    val nativeAdMedia = adView.findViewById<com.facebook.ads.MediaView>(R.id.native_ad_media)
+    val nativeAdSocialContext = adView.findViewById<AppCompatTextView>(R.id.native_ad_social_context)
+    val nativeAdBody = adView.findViewById<AppCompatTextView>(R.id.native_ad_body)
+    val sponsoredLabel = adView.findViewById<AppCompatTextView>(R.id.native_ad_sponsored_label)
+    val nativeAdCallToAction = adView.findViewById<AppCompatButton>(R.id.native_ad_call_to_action)
+
+
+    nativeAdCallToAction.setBackgroundResource(color[0])
+    nativeAdCallToAction.setTextColor(ContextCompat.getColor(this, color[1]))
+    nativeAdTitle.setTextColor(ContextCompat.getColor(this, color[2]))
+    nativeAdBody.setTextColor(ContextCompat.getColor(this, color[3]))
+
+    // Set the Text.
+    nativeAdTitle.text = nativeAd.advertiserName
+    nativeAdBody.text = nativeAd.adBodyText
+    nativeAdSocialContext.text = nativeAd.adSocialContext
+    nativeAdCallToAction.visibility = if (nativeAd.hasCallToAction()) View.VISIBLE else View.INVISIBLE
+    nativeAdCallToAction.text = nativeAd.adCallToAction
+    sponsoredLabel.text = nativeAd.sponsoredTranslation
+
+    // Create a list of clickable views
+    val clickableViews = mutableListOf<View>()
+    clickableViews.add(nativeAdTitle)
+    clickableViews.add(nativeAdCallToAction)
+
+    // Register the Title and CTA button to listen for clicks.
+    nativeAd.registerViewForInteraction(adView, nativeAdMedia, nativeAdIcon, clickableViews)
+
+    FBHome_layout?.removeAllViews()
+    FBHome_layout?.addView(adView)
+    FBHome_layout?.bringToFront()
+    FBHome_layout?.invalidate()
+
+    return FBHome_layout;
 }
 
 
