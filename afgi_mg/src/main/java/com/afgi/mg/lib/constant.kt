@@ -10,6 +10,7 @@ import com.facebook.ads.AdSettings
 import com.facebook.ads.AudienceNetworkAds
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
+import com.google.android.gms.ads.initialization.InitializationStatus
 //import com.inmobi.sdk.InMobiSdk
 //import com.inmobi.sdk.SdkInitializationListener
 import com.ironsource.mediationsdk.IronSource
@@ -34,7 +35,8 @@ val params = JSONObject()
 
 
 fun Context.initialize() {
-    MobileAds.initialize(this)
+
+    MobileAds.initialize(this){ initializationStatus: InitializationStatus? ->  Log.e("aa","--------$initializationStatus") }
     AudienceNetworkAds.initialize(this)
     AppLovinSdk.getInstance(this).mediationProvider = "max"
     AppLovinSdk.getInstance(this).initializeSdk {}

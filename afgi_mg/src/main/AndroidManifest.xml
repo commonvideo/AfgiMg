@@ -12,6 +12,9 @@
         <meta-data
             android:name="applovin.sdk.key"
             android:value="1XnzZDb3TlviSV30JamInebTl0eTDLn42I850yHPD29oJHVwskH4RLPN9V6sJfH32vgoHJMSZTQ1v1cAcN3UsL" />
+
+        <activity android:name="com.facebook.ads.AudienceNetworkActivity" android:hardwareAccelerated="true" />
+
         <activity
             android:name="com.ironsource.sdk.controller.ControllerActivity"
             android:configChanges="orientation|screenSize"
