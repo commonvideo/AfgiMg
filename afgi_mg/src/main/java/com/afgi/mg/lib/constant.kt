@@ -6,8 +6,6 @@ import android.content.Context
 import android.text.TextUtils
 import android.util.Log
 import com.applovin.sdk.AppLovinSdk
-import com.facebook.FacebookSdk
-import com.facebook.LoggingBehavior
 import com.facebook.ads.AdSettings
 import com.facebook.ads.AudienceNetworkAds
 import com.google.android.gms.ads.MobileAds
@@ -41,19 +39,6 @@ fun Context.initialize() {
     AudienceNetworkAds.initialize(this)
     AppLovinSdk.getInstance(this).mediationProvider = "max"
     AppLovinSdk.getInstance(this).initializeSdk {}
-}
-
-fun Context.FacebookTrack(varient : Boolean){
-    FacebookSdk.sdkInitialize(this);
-    FacebookSdk.setAutoInitEnabled(true);
-    FacebookSdk.fullyInitialize();
-    FacebookSdk.setAdvertiserIDCollectionEnabled(true);
-
-    if (varient) {
-        FacebookSdk.setIsDebugEnabled(true);
-        FacebookSdk.addLoggingBehavior(LoggingBehavior.APP_EVENTS);
-    }
-    FacebookSdk.setAutoLogAppEventsEnabled(true);
 }
 
 fun Context.initInMobi(str:String){

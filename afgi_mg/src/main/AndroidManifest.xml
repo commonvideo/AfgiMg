@@ -20,20 +20,6 @@
             android:hardwareAccelerated="true"
             tools:replace="android:configChanges"/>
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="275969495433214"/>
-        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="e783faff78597aecf4992baeac00feae"/>
-
-
-        <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
-            android:value="false"/>
-        <meta-data
-            android:name="com.facebook.sdk.AutoInitEnabled"
-            android:value="false" />
-
-        <meta-data
-            android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled"
-            android:value="false" />
-
         <activity
             android:name="com.ironsource.sdk.controller.ControllerActivity"
             android:configChanges="orientation|screenSize"

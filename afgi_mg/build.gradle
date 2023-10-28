@@ -65,7 +65,6 @@ dependencies {
 
     //todo Facebook Network
     implementation 'com.facebook.android:audience-network-sdk:6.16.0'
-    implementation 'com.facebook.android:facebook-android-sdk:15.2.0'
 
     //todo Applovin Network
     implementation 'com.applovin.mediation:google-adapter:21.5.0.3'
@@ -87,7 +86,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.commonvideo'
                 artifactId = 'afgi'
-                version = 'EngageNow_ver3'
+                version = 'EngageNow_ver3_1'
             }
         }
     }
