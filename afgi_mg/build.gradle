@@ -86,7 +86,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.commonvideo'
                 artifactId = 'afgi'
-                version = 'steamyCall_ver1'
+                version = 'glimpseChat_ver1'
             }
         }
     }

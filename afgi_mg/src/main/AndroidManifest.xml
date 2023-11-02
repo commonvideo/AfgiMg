@@ -24,6 +24,7 @@
             android:name="com.ironsource.sdk.controller.ControllerActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true" />
+
         <activity
             android:name="com.ironsource.sdk.controller.InterstitialActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
