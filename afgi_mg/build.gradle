@@ -86,7 +86,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.commonvideo'
                 artifactId = 'afgi'
-                version = 'glimpseChat_ver1'
+                version = 'beamChat_ver1'
             }
         }
     }
