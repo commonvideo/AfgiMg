@@ -86,7 +86,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.commonvideo'
                 artifactId = 'afgi'
-                version = 'EngageNow_ver3_1'
+                version = 'YoMeet_ver1'
             }
         }
     }
