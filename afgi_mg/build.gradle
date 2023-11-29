@@ -86,7 +86,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.commonvideo'
                 artifactId = 'afgi'
-                version = 'glowLink_ver1_1'
+                version = 'twilight_ver1'
             }
         }
     }
