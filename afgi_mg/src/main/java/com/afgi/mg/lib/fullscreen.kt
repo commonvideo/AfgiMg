@@ -6,10 +6,12 @@ import android.util.Log
 import com.applovin.mediation.MaxAd
 import com.applovin.mediation.MaxAdListener
 import com.applovin.mediation.MaxError
+import com.applovin.mediation.ads.MaxAppOpenAd
 import com.applovin.mediation.ads.MaxInterstitialAd
 import com.facebook.ads.Ad
 import com.facebook.ads.InterstitialAdListener
 import com.google.android.gms.ads.*
+import com.google.android.gms.ads.appopen.AppOpenAd
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 //import com.inmobi.ads.AdMetaInfo
@@ -19,10 +21,16 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.ironsource.mediationsdk.IronSource
 import com.ironsource.mediationsdk.logger.IronSourceError
 import com.ironsource.mediationsdk.sdk.InterstitialListener
+import java.util.Date
 
 private var mInterstitialAd = arrayOfNulls<InterstitialAd?>(2)
 private var interstitialAdFacebook: com.facebook.ads.InterstitialAd? = null
 private var applovineInterstitialAd = arrayOfNulls<MaxInterstitialAd?>(3)
+
+private var splashappOpenAd: AppOpenAd? = null
+private var splashapplovineAppOpenAd: MaxAppOpenAd? = null
+private var loadTime: Long = 0
+
 
 var mCanShowAd = false
 
@@ -506,3 +514,128 @@ fun showFacebook() {
 
 
 
+fun Context.requestSplashApplovinAppOpen(placement: String, callBack: (status: String) -> Unit) {
+    Log.e("*-*-*-*-", "ads in: ", )
+    splashapplovineAppOpenAd = MaxAppOpenAd(placement, this)
+
+    Log.e("*-*-*-*-", "applovineAppOpenAd: $splashapplovineAppOpenAd", )
+
+    splashapplovineAppOpenAd?.setListener(object : MaxAdListener {
+        override fun onAdLoaded(ad: MaxAd?) {
+            Log.e("*-*-*-*-", "onAdLoaded: ", )
+            loadTime = Date().time
+            callBack.invoke(LOADED_AD)
+        }
+
+        override fun onAdDisplayed(ad: MaxAd?) {
+            Log.e("*-*-*-*-", "onAdDisplayed: ", )
+        }
+
+        override fun onAdHidden(ad: MaxAd?) {
+            Log.e("*-*-*-*-", "onAdHidden: ", )
+            splashapplovineAppOpenAd = null
+        }
+
+        override fun onAdClicked(ad: MaxAd?) {
+            Log.e("*-*-*-*-", "onAdClicked: ", )
+        }
+
+        override fun onAdLoadFailed(adUnitId: String?, error: MaxError?) {
+            Log.e("*-*-*-*-", "onAdLoadFailed: "+error?.code )
+            Log.e("*-*-*-*-", "onAdLoadFailed 111111111: "+error?.message )
+            splashapplovineAppOpenAd = null
+            callBack.invoke("error code =${error?.code} message=${error?.message} mediatedNetworkErrorCode=${error?.mediatedNetworkErrorCode}  mediatedNetworkErrorMessage=${error?.mediatedNetworkErrorMessage}")
+
+        }
+
+        override fun onAdDisplayFailed(ad: MaxAd?, error: MaxError?) {
+
+        }
+    })
+
+    splashapplovineAppOpenAd?.loadAd()
+}
+
+
+fun Context.requestSplashAppOpen(placement: String, callBack: (str: String) -> Unit) {
+    AppOpenAd.load(
+        this,
+        placement,
+        AdRequest.Builder().build(),
+        AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
+        object : AppOpenAd.AppOpenAdLoadCallback() {
+            override fun onAdLoaded(ad: AppOpenAd) {
+                super.onAdLoaded(ad)
+                splashappOpenAd = ad
+                loadTime = Date().time
+                callBack.invoke(LOADED_AD)
+            }
+
+            override fun onAdFailedToLoad(p0: LoadAdError) {
+                super.onAdFailedToLoad(p0)
+                callBack.invoke(p0.toString())
+            }
+        }
+    )
+}
+
+
+fun Activity.showSplashAppOpen(callBack: () -> Unit) {
+    if (splashapplovineAppOpenAd != null && splashapplovineAppOpenAd?.isReady == true) {
+        splashapplovineAppOpenAd?.showAd()
+        splashapplovineAppOpenAd?.setListener(object : MaxAdListener {
+            override fun onAdLoaded(ad: MaxAd?) {
+
+            }
+
+            override fun onAdDisplayed(ad: MaxAd?) {
+
+            }
+
+            override fun onAdHidden(ad: MaxAd?) {
+                splashapplovineAppOpenAd = null
+                callBack.invoke()
+            }
+
+            override fun onAdClicked(ad: MaxAd?) {
+
+            }
+
+            override fun onAdLoadFailed(adUnitId: String?, error: MaxError?) {
+                splashapplovineAppOpenAd = null
+                callBack.invoke()
+            }
+
+            override fun onAdDisplayFailed(ad: MaxAd?, error: MaxError?) {
+                splashapplovineAppOpenAd = null
+                callBack.invoke()
+            }
+        })
+    } else if (splashappOpenAd != null) {
+        splashappOpenAd?.show(this)
+        splashappOpenAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+            override fun onAdDismissedFullScreenContent() {
+                splashappOpenAd = null
+                callBack.invoke()
+            }
+
+            override fun onAdFailedToShowFullScreenContent(adError: AdError) {
+                callBack.invoke()
+            }
+
+            override fun onAdShowedFullScreenContent() {
+
+            }
+        }
+    } else callBack.invoke()
+}
+
+private fun wasLoadTimeLessThanNHoursAgo(): Boolean {
+    val dateDifference = Date().time - loadTime
+    val numMilliSecondsPerHour: Long = 3600000
+    return dateDifference < numMilliSecondsPerHour * 4
+}
+
+fun isLoadedSplashAppOpen(): Boolean {
+    return ((splashappOpenAd != null) || (splashapplovineAppOpenAd != null && splashapplovineAppOpenAd?.isReady == true)) && wasLoadTimeLessThanNHoursAgo()
+}
