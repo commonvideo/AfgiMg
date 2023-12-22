@@ -7,6 +7,16 @@ android {
     namespace 'com.afgi.sample'
     compileSdk 33
 
+
+    signingConfigs {
+        live {
+            keyAlias 'libafgi'
+            keyPassword 'libafgi'
+            storeFile file('../libafgi.jks')
+            storePassword 'libafgi'
+        }
+    }
+
     defaultConfig {
         applicationId "com.afgi.sample"
         minSdk 24
@@ -14,13 +24,14 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.live
         }
     }
     compileOptions {
