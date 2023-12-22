@@ -25,42 +25,42 @@ fun Activity.requestAppLovinReward(
         id, this
     )
     rewardedAd.setListener(object : MaxRewardedAdListener {
-        override fun onAdLoaded(maxAd: MaxAd?) {
+        override fun onAdLoaded(maxAd: MaxAd) {
             if (rewardedAd.isReady) {
                 rewardedAd.showAd()
             }
         }
 
-        override fun onAdDisplayed(maxAd: MaxAd?) {
+        override fun onAdDisplayed(maxAd: MaxAd) {
 
         }
 
-        override fun onAdHidden(maxAd: MaxAd?) {
+        override fun onAdHidden(maxAd: MaxAd) {
             callback.invoke(isRewarded, "")
             isRewarded = false
         }
 
-        override fun onAdClicked(maxAd: MaxAd?) {
+        override fun onAdClicked(maxAd: MaxAd) {
 
         }
 
-        override fun onAdLoadFailed(p0: String?, adError: MaxError?) {
+        override fun onAdLoadFailed(p0: String, adError: MaxError) {
             callback.invoke(isRewarded, adError.toString())
         }
 
-        override fun onAdDisplayFailed(maxAd: MaxAd?, adError: MaxError?) {
+        override fun onAdDisplayFailed(maxAd: MaxAd, adError: MaxError) {
             callback.invoke(isRewarded, adError.toString())
         }
 
-        override fun onUserRewarded(maxAd: MaxAd?, p1: MaxReward?) {
+        override fun onUserRewarded(maxAd: MaxAd, p1: MaxReward) {
             isRewarded = true
         }
 
-        override fun onRewardedVideoStarted(p0: MaxAd?) {
+        override fun onRewardedVideoStarted(p0: MaxAd) {
 
         }
 
-        override fun onRewardedVideoCompleted(p0: MaxAd?) {
+        override fun onRewardedVideoCompleted(p0: MaxAd) {
 
         }
     })
