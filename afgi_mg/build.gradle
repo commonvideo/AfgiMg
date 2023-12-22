@@ -84,7 +84,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.commonvideo'
                 artifactId = 'afgi'
-                version = 'videocall.randomstream.randomcall:1'
+                version = 'chilly.randomVideo.call:1'
             }
         }
     }
