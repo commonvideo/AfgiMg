@@ -53,26 +53,26 @@ fun Context.requestApplovinAppOpen(placement: String, callBack: (status: String)
     Log.e("*-*-*-*-", "applovineAppOpenAd: $applovineAppOpenAd", )
 
     applovineAppOpenAd?.setListener(object : MaxAdListener {
-        override fun onAdLoaded(ad: MaxAd?) {
+        override fun onAdLoaded(ad: MaxAd) {
             Log.e("*-*-*-*-", "onAdLoaded: ", )
             loadTime = Date().time
             callBack.invoke(LOADED_AD)
         }
 
-        override fun onAdDisplayed(ad: MaxAd?) {
+        override fun onAdDisplayed(ad: MaxAd) {
             Log.e("*-*-*-*-", "onAdDisplayed: ", )
         }
 
-        override fun onAdHidden(ad: MaxAd?) {
+        override fun onAdHidden(ad: MaxAd) {
             Log.e("*-*-*-*-", "onAdHidden: ", )
             applovineAppOpenAd = null
         }
 
-        override fun onAdClicked(ad: MaxAd?) {
+        override fun onAdClicked(ad: MaxAd) {
             Log.e("*-*-*-*-", "onAdClicked: ", )
         }
 
-        override fun onAdLoadFailed(adUnitId: String?, error: MaxError?) {
+        override fun onAdLoadFailed(adUnitId: String, error: MaxError) {
             Log.e("*-*-*-*-", "onAdLoadFailed: "+error?.code )
             Log.e("*-*-*-*-", "onAdLoadFailed 111111111: "+error?.message )
             applovineAppOpenAd = null
@@ -80,7 +80,7 @@ fun Context.requestApplovinAppOpen(placement: String, callBack: (status: String)
 
         }
 
-        override fun onAdDisplayFailed(ad: MaxAd?, error: MaxError?) {
+        override fun onAdDisplayFailed(ad: MaxAd, error: MaxError) {
 
         }
     })
@@ -98,29 +98,29 @@ fun Activity.showAppOpen(callBack: () -> Unit) {
     if (applovineAppOpenAd != null && applovineAppOpenAd?.isReady == true) {
         applovineAppOpenAd?.showAd()
         applovineAppOpenAd?.setListener(object : MaxAdListener {
-            override fun onAdLoaded(ad: MaxAd?) {
+            override fun onAdLoaded(ad: MaxAd) {
 
             }
 
-            override fun onAdDisplayed(ad: MaxAd?) {
+            override fun onAdDisplayed(ad: MaxAd) {
 
             }
 
-            override fun onAdHidden(ad: MaxAd?) {
+            override fun onAdHidden(ad: MaxAd) {
                 applovineAppOpenAd = null
                 callBack.invoke()
             }
 
-            override fun onAdClicked(ad: MaxAd?) {
+            override fun onAdClicked(ad: MaxAd) {
 
             }
 
-            override fun onAdLoadFailed(adUnitId: String?, error: MaxError?) {
+            override fun onAdLoadFailed(adUnitId: String, error: MaxError) {
                 applovineAppOpenAd = null
                 callBack.invoke()
             }
 
-            override fun onAdDisplayFailed(ad: MaxAd?, error: MaxError?) {
+            override fun onAdDisplayFailed(ad: MaxAd, error: MaxError) {
                 applovineAppOpenAd = null
                 callBack.invoke()
             }

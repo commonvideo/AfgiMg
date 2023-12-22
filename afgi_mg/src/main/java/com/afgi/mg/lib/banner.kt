@@ -179,7 +179,7 @@ fun Activity.requestAppLovinBanner(
 ) {
     val adView = MaxAdView(placement, this)
     adView.setListener(object : MaxAdViewAdListener {
-        override fun onAdLoaded(ad: MaxAd?) {
+        override fun onAdLoaded(ad: MaxAd) {
             val layout = LinearLayout(this@requestAppLovinBanner)
             layout.layoutParams =
                 LinearLayout.LayoutParams(
@@ -195,37 +195,37 @@ fun Activity.requestAppLovinBanner(
             callBack.invoke(layout, LOADED_AD)
         }
 
-        override fun onAdDisplayed(ad: MaxAd?) {
+        override fun onAdDisplayed(ad: MaxAd) {
 
         }
 
-        override fun onAdHidden(ad: MaxAd?) {
+        override fun onAdHidden(ad: MaxAd) {
 
         }
 
-        override fun onAdClicked(ad: MaxAd?) {
+        override fun onAdClicked(ad: MaxAd) {
 
         }
 
-        override fun onAdLoadFailed(adUnitId: String?, error: MaxError?) {
+        override fun onAdLoadFailed(adUnitId: String, error: MaxError) {
             callBack.invoke(
                 null,
                 "error code =${error?.code} message=${error?.message} mediatedNetworkErrorCode=${error?.mediatedNetworkErrorCode}  mediatedNetworkErrorMessage=${error?.mediatedNetworkErrorMessage}"
             )
         }
 
-        override fun onAdDisplayFailed(ad: MaxAd?, error: MaxError?) {
+        override fun onAdDisplayFailed(ad: MaxAd, error: MaxError) {
             callBack.invoke(
                 null,
                 "error code =${error?.code} message=${error?.message} mediatedNetworkErrorCode=${error?.mediatedNetworkErrorCode}  mediatedNetworkErrorMessage=${error?.mediatedNetworkErrorMessage}"
             )
         }
 
-        override fun onAdExpanded(ad: MaxAd?) {
+        override fun onAdExpanded(ad: MaxAd) {
 
         }
 
-        override fun onAdCollapsed(ad: MaxAd?) {
+        override fun onAdCollapsed(ad: MaxAd) {
 
         }
     })

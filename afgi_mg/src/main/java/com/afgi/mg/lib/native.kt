@@ -585,7 +585,7 @@ fun Activity.requestNativeApplovin(
     val nativeAdLoader = MaxNativeAdLoader(id, this)
     var loadedNativeAd: MaxAd? = null
     nativeAdLoader.setNativeAdListener(object : MaxNativeAdListener() {
-        override fun onNativeAdLoaded(p0: MaxNativeAdView?, p1: MaxAd?) {
+        override fun onNativeAdLoaded(p0: MaxNativeAdView?, p1: MaxAd) {
             Log.e("+-+-+-", "onNativeAdLoaded p0: "+p0 )
             super.onNativeAdLoaded(p0, p1)
             val layout = LinearLayout(this@requestNativeApplovin)
@@ -603,7 +603,7 @@ fun Activity.requestNativeApplovin(
             callBack.invoke(layout, LOADED_AD)
         }
 
-        override fun onNativeAdLoadFailed(p0: String?, p1: MaxError?) {
+        override fun onNativeAdLoadFailed(p0: String, p1: MaxError) {
             super.onNativeAdLoadFailed(p0, p1)
             Log.e("+-+-+-", "onNativeAdLoadFailed: "+p1 )
             Log.e("+-+-+-", "onNativeAdLoadFailed p0: "+p0 )
@@ -613,11 +613,11 @@ fun Activity.requestNativeApplovin(
             )
         }
 
-        override fun onNativeAdClicked(p0: MaxAd?) {
+        override fun onNativeAdClicked(p0: MaxAd) {
             super.onNativeAdClicked(p0)
         }
 
-        override fun onNativeAdExpired(p0: MaxAd?) {
+        override fun onNativeAdExpired(p0: MaxAd) {
             super.onNativeAdExpired(p0)
         }
     })
