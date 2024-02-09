@@ -64,7 +64,7 @@
                             android:paddingLeft="@dimen/_2sdp"
                             android:paddingRight="@dimen/_2sdp"
                             android:text=" AD "
-                            android:textColor="@android:color/black"
+                            android:textColor="@android:color/white"
                             android:textSize="@dimen/_8ssp" />
 
                         <RatingBar

@@ -86,7 +86,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.commonvideo'
                 artifactId = 'afgi'
-                version = 'twilight_ver1'
+                version = 'pandaChat_ver1'
             }
         }
     }

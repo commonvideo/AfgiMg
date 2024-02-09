@@ -25,7 +25,7 @@
                 android:paddingStart="@dimen/_5sdp"
                 android:paddingEnd="@dimen/_5sdp"
                 android:text="AD"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/_7ssp"
                 android:visibility="visible" />
 
@@ -142,7 +142,7 @@
                 android:background="@drawable/btn_bg"
                 android:fontFamily="@font/heebo_bold"
                 android:gravity="center"
-                android:textColor="@color/black"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/_15sdp" />
 
         </RelativeLayout>
