@@ -55,6 +55,7 @@ dependencies {
     implementation 'com.google.ads.mediation:facebook:6.13.7.0'
     implementation 'com.unity3d.ads:unity-ads:4.4.1'
     implementation 'com.google.ads.mediation:unity:4.6.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
 
     //todo IronSource mediation
@@ -86,7 +87,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.commonvideo'
                 artifactId = 'afgi'
-                version = 'fireglobalvideocall-0.0.4'
+                version = 'kineticchat-4.0'
             }
         }
     }
