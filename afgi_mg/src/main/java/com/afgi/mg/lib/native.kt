@@ -401,10 +401,10 @@ private fun populateUnifiedNativeAdViewLarge(nativeAd: NativeAd, adView: NativeA
     adView.bodyView = adView.findViewById(R.id.ad_body)
     adView.callToActionView = adView.findViewById(R.id.ad_call_to_action)
     adView.iconView = adView.findViewById(R.id.ad_app_icon)
-    adView.priceView = adView.findViewById(R.id.ad_price)
-    adView.starRatingView = adView.findViewById(R.id.ad_stars)
-    adView.storeView = adView.findViewById(R.id.ad_store)
-    adView.advertiserView = adView.findViewById(R.id.ad_advertiser)
+   // adView.priceView = adView.findViewById(R.id.ad_price)
+   // adView.starRatingView = adView.findViewById(R.id.ad_stars)
+   // adView.storeView = adView.findViewById(R.id.ad_store)
+   // adView.advertiserView = adView.findViewById(R.id.ad_advertiser)
 
     // Some assets are guaranteed to be in every UnifiedNativeAd.
     (adView.headlineView as AppCompatTextView?)!!.text = nativeAd.headline
@@ -421,31 +421,31 @@ private fun populateUnifiedNativeAdViewLarge(nativeAd: NativeAd, adView: NativeA
         )
         adView.iconView!!.visibility = View.VISIBLE
     }
-    if (nativeAd.price == null) {
+ /*   if (nativeAd.price == null) {
         adView.priceView!!.visibility = View.GONE
     } else {
         adView.priceView!!.visibility = View.VISIBLE
         (adView.priceView as AppCompatTextView?)!!.text = nativeAd.price
-    }
-    if (nativeAd.store == null) {
+    }*/
+ /*   if (nativeAd.store == null) {
         adView.storeView!!.visibility = View.GONE
     } else {
         adView.storeView!!.visibility = View.VISIBLE
         (adView.storeView as AppCompatTextView?)!!.text = nativeAd.store
-    }
-    if (nativeAd.starRating == null) {
+    }*/
+ /*   if (nativeAd.starRating == null) {
         adView.starRatingView!!.visibility = View.GONE
     } else {
         (adView.starRatingView as RatingBar?)
             ?.setRating(nativeAd.starRating!!.toFloat())
         adView.starRatingView!!.visibility = View.VISIBLE
-    }
-    if (nativeAd.advertiser == null) {
+    }*/
+/*    if (nativeAd.advertiser == null) {
         adView.advertiserView!!.visibility = View.GONE
     } else {
         (adView.advertiserView as AppCompatTextView?)!!.text = nativeAd.advertiser
         adView.advertiserView!!.visibility = View.VISIBLE
-    }
+    }*/
     adView.setNativeAd(nativeAd)
 }
 
