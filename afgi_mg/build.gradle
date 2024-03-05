@@ -87,7 +87,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.commonvideo'
                 artifactId = 'afgi'
-                version = 'kineticchat-4.2'
+                version = 'kineticchat-4.3'
             }
         }
     }
